@@ -7,6 +7,7 @@
 /*
  * This exploit demonstrates the forged commit base attack on scudo.
  * Randomized allocation can be bypassed through retrying the exploit until two chunks are adjacent.
+ * Ideas sourced from https://www.usenix.org/system/files/woot24-mao.pdf
  *
  * Requirements:
  *  - Heap overflow
