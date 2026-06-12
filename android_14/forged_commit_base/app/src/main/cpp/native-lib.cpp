@@ -4,6 +4,16 @@
 #include <link.h>
 #include <android/log.h>
 
+/*
+ * This exploit demonstrates the forged commit base attack on scudo.
+ * Randomized allocation can be bypassed through retrying the exploit until two chunks are adjacent.
+ *
+ * Requirements:
+ *  - Heap overflow
+ *  - Ability to allocate multiple chunks of size 0x40 or greater
+ *  - Ability to allocate secondary chunks
+ */
+
 // Define log tags and shortcuts
 #define LOG_TAG "FORGED_COMMIT_BASE"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO,  LOG_TAG, __VA_ARGS__)
