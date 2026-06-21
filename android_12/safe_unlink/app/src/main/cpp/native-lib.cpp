@@ -125,7 +125,7 @@ Java_xyz_cygnusx_safe_1unlink_MainActivity_run(
         jobject /* this */) {
 
     uint32_t cookie = leak_scudo_cookie();
-    LOGI("First we need to leak the scudo cookie. In this libc version it is found at libc base + 0xcc440.\n Cookie: %x\n", cookie);
+    LOGI("First we need to leak the scudo cookie. In this libc version it is found at libc base + 0xd06c0.\n Cookie: %x\n", cookie);
     LOGI("This attack attempts to get malloc to return a pointer to the PerClass freelist allowing us to gain a primitive which can easily lead to arbitrary write.");
     LOGI("We build a fake secondary chunk header next.");
 
