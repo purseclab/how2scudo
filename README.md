@@ -11,6 +11,6 @@ Each folder represents an android version and each subfolder contains an android
 
 | Version | Offset |
 | -------- | -------- |
-| Android 12 | TBD |
+| Android Studio 12 latest | 0xd06c0 |
 | Android Studio 13 latest | 0xcc440 |
 | Android Studio 14 latest | 0xf7480 |
