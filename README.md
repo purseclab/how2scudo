@@ -14,6 +14,3 @@ Each folder represents an android version and each subfolder contains an android
 | Android 12 | TBD |
 | Android Studio 13 latest | 0xcc440 |
 | Android Studio 14 latest | 0xf7480 |
-
-### Note
-Everything here except scripts in utils were human made.
