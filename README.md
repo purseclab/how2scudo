@@ -1,5 +1,8 @@
 # how2scudo
 
+** TODO **
+ - Fix safe_unlink exploits
+
 This repo is inspired by [how2heap](https://github.com/shellphish/how2heap)
 
 The goal is to have a list of common techniques for the Android Scudo Allocator given certain primitives.
