@@ -54,8 +54,6 @@ struct PerClass {
     uint32_t chunks[];
 };
 
-// Offsets derived from the Android 13 libc.so used by this PoC:
-// build-id 4e07915368c859b1910c68c84a8de75f.
 static constexpr uintptr_t SCUDO_TLS_SLOT_OFFSET = 0x30;
 static constexpr uintptr_t SCUDO_PER_CLASS_STRIDE = 0x78;
 
