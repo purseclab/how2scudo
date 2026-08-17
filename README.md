@@ -1,16 +1,14 @@
 # how2scudo
 
-** TODO **
- - Fix safe_unlink exploits
+## Overview
 
 This repo is inspired by [how2heap](https://github.com/shellphish/how2heap)
 
-The goal is to have a list of common techniques for the Android Scudo Allocator given certain primitives.
+The goal is to have a list of common techniques for the Android Scudo Allocator given certain primitives. In the future LLMs can use this repository as a set of skills for exploitation generation. 
 
-Each folder represents an android version and each subfolder contains an android studio project with a proof of concept detailing the exploit.
+Each folder represents an android major version. Each subfolder represents a 64 bit build_id for that version. 32 bit PoCs are not tracked.
 
-The repository is also piloting a native-only, build-ID-specific layout without
-removing the existing Android Studio projects:
+The layout of each subfolder is as follows:
 
 ```text
 android_<version>/<libc-build-id>/
@@ -19,17 +17,20 @@ android_<version>/<libc-build-id>/
   CMakeLists.txt
 ```
 
-The current build-ID targets are:
+## Building
 
-- [`d6dbe2c18b0def7e9ee1655171c8af09`](android_14/d6dbe2c18b0def7e9ee1655171c8af09/)
-- [`c74277f481a383c87215b672f6465e24`](android_14/c74277f481a383c87215b672f6465e24/)
-- [`c001f2c6f6eddca1f38c99bd7c52019d`](android_14/c001f2c6f6eddca1f38c99bd7c52019d/)
-- [`a017f07431ff6692304a0cae225962fb`](android_14/a017f07431ff6692304a0cae225962fb/)
-- [`3d07239ca249ec10f6b9ffcbac96d553`](android_14/3d07239ca249ec10f6b9ffcbac96d553/)
-- [`33ad5959e2b38fc822cda3c642e16c94`](android_14/33ad5959e2b38fc822cda3c642e16c94/)
-- [`1d36f8ae6e0af6158793abea7d4f4f2b`](android_14/1d36f8ae6e0af6158793abea7d4f4f2b/)
-- [`19c32900d9d702c303d2b4164fbba76c`](android_14/19c32900d9d702c303d2b4164fbba76c/)
-- [`10f6580e623cb20b4044f6e6a4103b34`](android_14/10f6580e623cb20b4044f6e6a4103b34/)
+Replace `$ANDROID_NDK` with the path to your local NDK. 
 
-Each builds as a standalone NDK executable and has been runtime-observed with
-its exact private libc on an API 34, 4 KB emulator.
+Replace `$VERSION` with the platform api version you are building for. A list of build_id to api version can be found [here](https://bionicdb.neilhommes.xyz/).
+
+```sh
+cmake -S . -B out \
+  -DCMAKE_TOOLCHAIN_FILE="$ANDROID_NDK/build/cmake/android.toolchain.cmake" \
+  -DANDROID_ABI=arm64-v8a \
+  -DANDROID_PLATFORM=android-$VERSION \
+  -DCMAKE_BUILD_TYPE=Debug
+  
+cmake --build out
+```
+
+This will generate binaries in `out`. Run the PoCs through adb shell.
